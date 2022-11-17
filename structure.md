@@ -1,0 +1,42 @@
+# Needs for 'project hitgub'
+
+## Project
+
+### Features
+
+### Phases
+ - Have [Requirements](#Requirements) 
+ - Have **not-started**, **in-progress** and **complete** status
+ - Have [Comments](#Comments)
+
+### Requirements
+  - Have [Tasks](#Tasks)
+  - Have **satisfied**, **not yet satisfied** and **issue** status
+  - Have title
+  - Have description
+  - Have [Comments](#Comments)
+
+### Tasks
+  - Have assigned [Users](#Users)
+  - Have title
+  - Have description
+  - Have **not-started**, **in-progress**, **abandoned** and **complete** status
+  - Have [Comments](#Comments)
+  - Have steps?
+
+### Comments
+  - Have body
+  - Have [User](#User)
+  - Have time
+  - Can have comments (threads?)
+
+### Assignments
+  - Have [Users](#Users) (one to many)
+  - Have [Tasks](#Tasks)
+  - Have **not-started**, **in-progress**, **abandoned** and **complete** status
+
+### Users
+  - Have username
+  - Have email
+  - Have [Assignments]( #Assignments )
+  - Have [Projects](#Projects)
