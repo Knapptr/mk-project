@@ -1,8 +1,17 @@
 # Needs for 'project hitgub'
+  
+### Users
+  - Have username
+  - Have email
+  - Have [Assignments]( #Assignments )
+  - Have [Projects](#Projects)
 
-## Project
+### Project
+ - Contains all below
 
 ### Features
+ - Have [Requirements](#Requirements)
+ - Have [Tasks](#Tasks)
 
 ### Phases
  - Have [Requirements](#Requirements) 
@@ -35,8 +44,3 @@
   - Have [Tasks](#Tasks)
   - Have **not-started**, **in-progress**, **abandoned** and **complete** status
 
-### Users
-  - Have username
-  - Have email
-  - Have [Assignments]( #Assignments )
-  - Have [Projects](#Projects)
