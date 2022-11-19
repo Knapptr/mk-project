@@ -39,6 +39,7 @@
   - Have To [User](#User)
   - Have timestamp
   - Can have comments (threads? array of replies?)
+  - Have read/unread toggle
 
 ### Assignments
   - Have [Users](#Users) (one to many)
