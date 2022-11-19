@@ -8,7 +8,6 @@
   - Have @ [Comment](#Comment) Alerts
 
 ## Project
- - Contains all below
 
 ### Features
  - Have [Requirements](#Requirements)
