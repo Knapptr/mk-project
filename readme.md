@@ -1,6 +1,6 @@
 <div align="center">
 
-  <img src="assets/logo.png" alt="logo" width="200" height="auto" />
+<!--   <img src="assets/logo.png" alt="logo" width="200" height="auto" /> -->
   <h1>Git 'r Done</h1>
   
   <p>
@@ -43,9 +43,9 @@
 
 ### :camera: Screenshots
 
-<div align="center"> 
+<!-- <div align="center"> 
   <img src="https://placehold.co/600x400?text=Your+Screenshot+here" alt="screenshot" />
-</div>
+</div> -->
 
 <!-- TechStack -->
 
