@@ -183,14 +183,6 @@ function App() {
 
 ## :compass: Roadmap
 
-#### Check-ins/Reminders:
-
-- [ ] 
-
-#### Before Going Live:
-
-- [ ] 
-
 ### Checklist
 
 - [ ]
