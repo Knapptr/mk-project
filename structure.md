@@ -5,8 +5,9 @@
   - Have email
   - Have [Assignments]( #Assignments )
   - Have [Projects](#Projects)
+  - Have @ [Comment](#Comment) Alerts
 
-### Project
+## Project
  - Contains all below
 
 ### Features
@@ -35,9 +36,10 @@
 
 ### Comments
   - Have body
-  - Have [User](#User)
-  - Have time
-  - Can have comments (threads?)
+  - Have From [User](#User) 
+  - Have To [User](#User)
+  - Have timestamp
+  - Can have comments (threads? array of replies?)
 
 ### Assignments
   - Have [Users](#Users) (one to many)
