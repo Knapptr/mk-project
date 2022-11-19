@@ -12,7 +12,7 @@
 
 <!-- Table of Contents -->
 
-# :notebook_with_decorative_cover: Table of Contents
+# Table of Contents
 
 - [About the Project](#star2-about-the-project)
   - [Screenshots](#camera-screenshots)
@@ -28,17 +28,16 @@
 - [Usage](#eyes-usage)
 - [Roadmap](#compass-roadmap)
 - [FAQ](#grey_question-faq)
-- [License](#warning-license)
 - [Contact](#handshake-contact)
 - [Acknowledgements](#gem-acknowledgements)
 
 <!-- About the Project -->
 
-## :star2: About the Project
+## About the Project
 
 <!-- Screenshots -->
 
-### :camera: Screenshots
+### Screenshots
 
 <!-- <div align="center"> 
   <img src="https://placehold.co/600x400?text=Your+Screenshot+here" alt="screenshot" />
@@ -46,7 +45,7 @@
 
 <!-- TechStack -->
 
-### :space_invader: Tech Stack
+### Tech Stack
 
 <details>
   <summary>Client</summary>
@@ -87,7 +86,7 @@
 
 <!-- Features -->
 
-### :dart: Features
+### Features
 
 - Feature 1
 - Feature 2
@@ -95,7 +94,7 @@
 
 <!-- Color Reference -->
 
-### :art: Color Reference
+### Color Reference
 
 | Color           | Hex                                                              |
 | --------------- | ---------------------------------------------------------------- |
@@ -106,7 +105,7 @@
 
 <!-- Env Variables -->
 
-### :key: Environment Variables
+### Environment Variables
 
 To run this project, you will need to add the following environment variables to your .env file
 
@@ -118,11 +117,11 @@ To run this project, you will need to add the following environment variables to
 
 <!-- Getting Started -->
 
-## :toolbox: Getting Started
+## Getting Started
 
 <!-- Running Tests -->
 
-### :test_tube: Running Tests
+### Running Tests
 
 To run tests, run the following command
 
@@ -132,7 +131,7 @@ To run tests, run the following command
 
 <!-- Run Locally -->
 
-### :running: Run Locally
+### Run Locally
 
 Go to the project directory
 
@@ -154,7 +153,7 @@ Start the server
 
 <!-- Deployment -->
 
-### :triangular_flag_on_post: Deployment
+### Deployment
 
 To deploy this project run
 
@@ -164,7 +163,7 @@ To deploy this project run
 
 <!-- Usage -->
 
-## :eyes: Usage
+## Usage
 
 Use this space to tell a little more about your project and how it can be used. Show additional screenshots, code samples, demos or link to other resources.
 
@@ -178,7 +177,7 @@ function App() {
 
 <!-- Roadmap -->
 
-## :compass: Roadmap
+## Roadmap
 
 ### Checklist
 
@@ -186,22 +185,16 @@ function App() {
 
 <!-- FAQ -->
 
-## :grey_question: FAQ
+## FAQ
 
 - Question 1
 
-<!-- License -->
-
-## :warning: License
-
-Distributed under the no License. See LICENSE.txt for more information.
-
 <!-- Contact -->
 
-## :handshake: Contact
+## Contact
 
 <!-- Acknowledgments -->
 
-## :gem: Acknowledgements
+## Acknowledgements
 
 Use this section to mention useful resources and libraries that you have used in your projects.
