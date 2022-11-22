@@ -1,0 +1,22 @@
+{
+  "name": "mk-project",
+  "version": "1.0.0",
+  "description": "Task-tracking tool for software development",
+  "main": "build/index.js",
+  "scripts": {
+    "test": "jest --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Knapptr/mk-project.git"
+  },
+  "author": "Tyler Knapp, Jesse Putnam",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Knapptr/mk-project/issues"
+  },
+  "homepage": "https://github.com/Knapptr/mk-project#readme",
+  "devDependencies": {
+    "typescript": "^4.9.3"
+  }
+}
