@@ -18,7 +18,7 @@ interface ITask {
   getHistory(): ICompletedHistory[];
 }
 
-function createTask() {
+function createTask(): ITask {
   const task: ITask = {
     completed: { status: false, time: null },
     history: [],
@@ -62,4 +62,5 @@ function createTask() {
 
   return task;
 }
+
 export default createTask;
