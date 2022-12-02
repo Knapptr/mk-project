@@ -43,7 +43,7 @@ function createTask(): ITask {
       this.completed.status = false;
     },
 
-    _addToHistory(completedState: ICompletedState) {
+    _addToHistory(completedState) {
       const historyObject: ICompletedHistory = {
         markedAs: completedState.status ? "complete" : "incomplete",
         at: completedState.time as Date
