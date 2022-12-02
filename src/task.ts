@@ -1,13 +1,3 @@
-interface Task {
-  completed: ICompletedState;
-  history: ICompletedHistory[];
-  complete(): void;
-  uncomplete(): void;
-  _addToHistory(completedState: ICompletedState): void;
-  getCompletedStatus(): ICompletedState;
-  getHistory(): ICompletedHistory[];
-}
-
 interface ICompletedState {
   status: boolean;
   time: Date | null;
@@ -18,29 +8,39 @@ interface ICompletedHistory {
   at: Date;
 }
 
-function createTask() {
-  let completed: ICompletedState = { status: false, time: null };
-  let history: ICompletedHistory[] = [];
+interface ITask {
+  completed: ICompletedState;
+  history: ICompletedHistory[];
+  complete(): void;
+  uncomplete(): void;
+  _addToHistory(completedState: ICompletedState): void;
+  getCompletedStatus(): ICompletedState;
+  getHistory(): ICompletedHistory[];
+}
 
-  return {
-    complete() {
-      if (completed.status) {
+function createTask() {
+  const task: ITask = {
+    completed: { status: false, time: null },
+    history: [],
+
+    complete: function () {
+      if (this.completed.status) {
         throw new Error("Task status marked complete. Cannot complete again.");
       }
-      completed.status = true;
-      completed.time = new Date();
-      this._addToHistory(completed);
+      this.completed.status = true;
+      this.completed.time = new Date();
+      this._addToHistory(this.completed);
     },
 
-    uncomplete() {
-      if (!completed.status) {
+    uncomplete: function () {
+      if (!this.completed.status) {
         throw new Error(
           "Task status marked incomplete. Cannot mark incomplete."
         );
       }
-      this._addToHistory(completed);
-      completed.time = null;
-      completed.status = false;
+      this._addToHistory(this.completed);
+      this.completed.time = null;
+      this.completed.status = false;
     },
 
     _addToHistory(completedState: ICompletedState) {
@@ -48,16 +48,18 @@ function createTask() {
         markedAs: completedState.status ? "complete" : "incomplete",
         at: completedState.time as Date
       };
-      history.push(historyObject);
+      this.history.push(historyObject);
     },
 
     getCompletedStatus() {
-      return completed;
+      return this.completed;
     },
 
     getHistory() {
-      return history;
+      return this.history;
     }
   };
+
+  return task;
 }
 export default createTask;
