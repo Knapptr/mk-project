@@ -5,25 +5,33 @@ interface IReplies {
 }
 
 interface IComment {
-  read: Boolean;
+  read: boolean;
   body: string;
   //! TO ADD: From User
   //! TO ADD: To User
   timestamp: Date;
   replies: IReplies[];
+
+  toggleRead: () => void;
+  setBodyText: (text: string) => void;
+
+  getReadStatus: () => boolean;
 }
 
-function createComment(body: string) {
-  const comment = {
+function createComment() {
+  const comment: IComment = {
     // DATA
     read: false,
-    body,
+    body: "",
     timestamp: new Date(),
     replies: [],
 
     // METHODS -- SETTERS
     toggleRead: function () {
       this.read = !this.read;
+    },
+    setBodyText: function (text) {
+      this.body = text;
     },
 
     // METHODS -- GETTERS
