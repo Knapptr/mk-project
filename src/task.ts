@@ -13,9 +13,11 @@ interface ITask {
   history: ICompletedHistory[];
   complete(): void;
   uncomplete(): void;
-  _addToHistory(completedState: ICompletedState): void;
+
   getCompletedStatus(): ICompletedState;
   getHistory(): ICompletedHistory[];
+
+  _addToHistory(completedState: ICompletedState): void;
 }
 
 function createTask(): ITask {
@@ -23,6 +25,7 @@ function createTask(): ITask {
     completed: { status: false, time: null },
     history: [],
 
+    // SET METHODS
     complete: function () {
       if (this.completed.status) {
         throw new Error("Task status marked complete. Cannot complete again.");
@@ -43,20 +46,22 @@ function createTask(): ITask {
       this.completed.status = false;
     },
 
-    _addToHistory(completedState) {
-      const historyObject: ICompletedHistory = {
-        markedAs: completedState.status ? "complete" : "incomplete",
-        at: completedState.time as Date
-      };
-      this.history.push(historyObject);
-    },
-
+    // GET METHODS
     getCompletedStatus() {
       return this.completed;
     },
 
     getHistory() {
       return this.history;
+    },
+
+    // PRIVATE METHODS
+    _addToHistory(completedState) {
+      const historyObject: ICompletedHistory = {
+        markedAs: completedState.status ? "complete" : "incomplete",
+        at: completedState.time as Date
+      };
+      this.history.push(historyObject);
     }
   };
 
