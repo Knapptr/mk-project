@@ -54,4 +54,14 @@ describe("Comment replies", () => {
 
     expect(comment.replies.length === 1).toBe(true);
   });
+
+  it("Adds replies in chronological order", async () => {
+    const text1 = "Testing string 1";
+    const text2 = "Testing string deux";
+
+    comment.addReply(text1);
+    comment.addReply(text2);
+
+    expect(comment.replies[1].body === text2).toBe(true);
+  });
 });
