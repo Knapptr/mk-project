@@ -37,6 +37,21 @@ describe("Comment text", () => {
 
     comment.setBodyText(test_input);
 
-    expect(comment.body === test_input);
+    expect(comment.body === test_input).toBe(true);
+  });
+});
+
+describe("Comment replies", () => {
+  let comment: any;
+
+  beforeEach(() => {
+    comment = createComment();
+  });
+
+  it("Adds a reply", () => {
+    const text = "Testing text to try the trivial tests";
+    comment.addReply(text);
+
+    expect(comment.replies.length === 1).toBe(true);
   });
 });
