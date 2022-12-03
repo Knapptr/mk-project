@@ -17,15 +17,8 @@ interface IComment {
   addReply: (text: string) => void;
 
   getReadStatus: () => boolean;
-}
 
-function createReply(body: string): IReply {
-  const reply = {
-    body,
-    timestamp: new Date()
-  };
-
-  return reply;
+  _createReply: (body: string) => IReply;
 }
 
 function createComment() {
@@ -44,16 +37,24 @@ function createComment() {
       this.body = text;
     },
     addReply: function (text) {
-      const reply: IReply = createReply(text);
+      const reply: IReply = this._createReply(text);
       this.replies.push(reply);
     },
 
     // METHODS -- GETTERS
     getReadStatus: function () {
       return this.read;
-    }
+    },
 
     // METHODS -- PRIVATE
+    _createReply(body: string): IReply {
+      const reply = {
+        body,
+        timestamp: new Date()
+      };
+
+      return reply;
+    }
   };
   return comment;
 }
