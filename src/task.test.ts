@@ -20,9 +20,7 @@ describe("Task Completion", () => {
   it("Timestamps on completion", () => {
     task.complete();
 
-    expect(task.getCompletedStatus().time?.getMilliseconds()).toBeLessThan(
-      Date.now()
-    );
+    expect(task.getCompletedStatus().time === null).toBe(false);
   });
 
   it("Rejects complete() when already completed)", () => {
