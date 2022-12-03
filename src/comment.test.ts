@@ -7,9 +7,20 @@ describe("Comment read", () => {
     comment = createComment("Test comment");
   });
 
-  it("Marks comment as read", () => {
+  it("Inits as unread", () => {
+    expect(comment.getReadStatus()).toBe(false);
+  });
+
+  it("Marks unread comment as read", () => {
     comment.toggleRead();
 
     expect(comment.getReadStatus()).toBe(true);
+  });
+
+  it("Marks read comment as unread", () => {
+    comment.toggleRead();
+    comment.toggleRead();
+
+    expect(comment.getReadStatus()).toBe(false);
   });
 });
