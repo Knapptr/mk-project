@@ -1,4 +1,8 @@
+
+// Use Enum
+// Add Abandoned
 export type RequirementStatus = "not-started" | "in-progress" | "complete";
+
 export interface IRequirement {
     title: string;
     description: string | null;

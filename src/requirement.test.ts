@@ -61,7 +61,7 @@ describe("Requirement", () => {
         it("setTitle throws on empty string", () => {
             expect(() => { requirement.setTitle("") }).toThrow();
         })
-        it("resets to a valid title", () => {
+        it("Changes name of title with setTitle", () => {
             let newValidTitle = "A new valid Title."
 
             requirement.setTitle(newValidTitle);
@@ -94,6 +94,7 @@ describe("Requirement", () => {
             expect(requirement.status).toEqual(requirementStates.complete);
         })
 
+        // Remove this test, not-started can be set from any state
         it("cant set to 'not-started'", () => {
             requirement.setStatus(requirementStates.inProgress)
 
