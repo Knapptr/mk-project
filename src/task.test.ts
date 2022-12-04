@@ -12,22 +12,22 @@ describe("Task Completion", () => {
   });
 
   it("Marks task as finished", () => {
-    task.complete();
+    task.setComplete();
 
     expect(task.getCompletedStatus().status).toBe(true);
   });
 
   it("Timestamps on completion", () => {
-    task.complete();
+    task.setComplete();
 
     expect(task.getCompletedStatus().time === null).toBe(false);
   });
 
   it("Rejects complete() when already completed)", () => {
-    task.complete();
+    task.setComplete();
 
     expect(() => {
-      task.complete();
+      task.setComplete();
     }).toThrow();
   });
 });
@@ -40,19 +40,19 @@ describe("Task Incomplete", () => {
   });
 
   it("Marks a completed task as incomplete - sets date to null", () => {
-    task.complete();
-    task.uncomplete();
+    task.setComplete();
+    task.setUncomplete();
 
     expect(task.getCompletedStatus().status).toBe(false);
     expect(task.getCompletedStatus().time).toBe(null);
   });
 
   it("Won't allow uncomplete on incomplete task", () => {
-    expect(() => task.uncomplete()).toThrow();
+    expect(() => task.setUncomplete()).toThrow();
   });
 
   it("keeps history of complete state change", () => {
-    task.complete();
+    task.setComplete();
 
     expect(task.getHistory().length).toBe(1);
   });

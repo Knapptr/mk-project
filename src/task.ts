@@ -11,8 +11,8 @@ interface ICompletedHistory {
 interface ITask {
   completed: ICompletedState;
   history: ICompletedHistory[];
-  complete(): void;
-  uncomplete(): void;
+  setComplete(): void;
+  setUncomplete(): void;
 
   getCompletedStatus(): ICompletedState;
   getHistory(): ICompletedHistory[];
@@ -26,7 +26,7 @@ function createTask(): ITask {
     history: [],
 
     // SET METHODS
-    complete: function () {
+    setComplete() {
       if (this.completed.status) {
         throw new Error("Task status marked complete. Cannot complete again.");
       }
@@ -35,7 +35,7 @@ function createTask(): ITask {
       this._addToHistory(this.completed);
     },
 
-    uncomplete: function () {
+    setUncomplete() {
       if (!this.completed.status) {
         throw new Error(
           "Task status marked incomplete. Cannot mark incomplete."
