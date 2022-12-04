@@ -1,6 +1,7 @@
 interface IUser {
     username: string;
     validate(password: string): boolean
+    // Add email
 }
 
 function createUser(username: string, password: string): IUser {
