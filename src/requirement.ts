@@ -41,6 +41,7 @@ function validateTitleString(sanitizedTitle: string): boolean {
     }
     return true;
 }
+
 function sanitizeTitleString(title: string): string {
     let trimmedTitle = title.trim();
     return trimmedTitle;
