@@ -13,6 +13,8 @@ describe("Task creation", () => {
         let task = createTask(VALID_TASK_TITLE);
 
         expect(task.title).toBe(VALID_TASK_TITLE);
+        task.title = "        ";
+        // task.setTitle("new title");
     })
 })
 describe("Title", () => {

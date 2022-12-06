@@ -75,6 +75,9 @@ function createTask(taskTitle: string): ITask {
     get title() {
       return title;
     },
+    set title(_invalid) {
+      throw new Error("Title must be set with setTitle()")
+    },
     getCompletedStatus() {
       return this.completed;
     },
