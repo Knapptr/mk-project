@@ -1,4 +1,4 @@
-import { validate, generateID } from "./utils";
+import { validate } from "./utils";
 
 describe("validate strings", () => {
   it("throws on empty string", () => {
@@ -8,13 +8,5 @@ describe("validate strings", () => {
     expect(() => {
       validate.string.isNotEmpty(theEmptyString, errorMessage);
     }).toThrow(errorMessage);
-  });
-});
-
-describe("Generate ID", () => {
-  it("creates a string", () => {
-    const id = generateID();
-
-    expect(typeof id === "string").toBe(true);
   });
 });

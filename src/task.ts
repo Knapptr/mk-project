@@ -1,4 +1,4 @@
-import { generateID, validate } from "./utils";
+import { validate } from "./utils";
 
 interface ICompletedState {
   status: boolean;
@@ -11,7 +11,6 @@ interface ICompletedHistory {
 }
 
 export interface ITask {
-  _id: string;
   completed: ICompletedState;
   history: ICompletedHistory[];
   title: string;
@@ -36,7 +35,6 @@ function createTask(taskTitle: string): ITask {
   let title = taskTitle;
 
   const task: ITask = {
-    _id: generateID(),
     completed: { status: false, time: null },
     history: [],
 
