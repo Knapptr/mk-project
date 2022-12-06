@@ -1,7 +1,7 @@
 export const validate = {
     string: {
-        isNotEmpty(sanitizedString: string): boolean {
-            return sanitizedString.length > 0;
+        isNotEmpty(sanitizedString: string, errorMessage: string): void {
+            if (sanitizedString.length === 0) { throw new Error(errorMessage) }
         }
     }
 }
