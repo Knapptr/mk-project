@@ -1,59 +1,78 @@
-import createTask from "./task";
+import createTask, { ITask } from "./task";
 
+const VALID_TASK_TITLE = "valid task title"
+
+describe("Task creation", () => {
+    it("checks for valid title", () => {
+        const invalidTitle = "   "
+        expect(() => {
+            createTask(invalidTitle)
+        }).toThrow()
+    })
+})
+describe("Title", () => {
+    it("validates changing the title", () => {
+        const task = createTask(VALID_TASK_TITLE);
+        const invalidTitle = "  ";
+        expect(() => {
+            task.setTitle(invalidTitle)
+        }).toThrow()
+    })
+})
 describe("Task Completion", () => {
-  let task: any;
+    let task: ITask;
 
-  beforeEach(() => {
-    task = createTask();
-  });
+    beforeEach(() => {
+        task = createTask(VALID_TASK_TITLE);
+    });
 
-  it("Init complete state to false", () => {
-    expect(task.getCompletedStatus().status).toBe(false);
-  });
+    it("Init complete state to false", () => {
+        expect(task.getCompletedStatus().status).toBe(false);
+    });
 
-  it("Marks task as finished", () => {
-    task.setComplete();
+    it("Marks task as finished", () => {
+        task.setComplete();
 
-    expect(task.getCompletedStatus().status).toBe(true);
-  });
+        expect(task.getCompletedStatus().status).toBe(true);
+    });
 
-  it("Timestamps on completion", () => {
-    task.setComplete();
+    it("Timestamps on completion", () => {
+        task.setComplete();
 
-    expect(task.getCompletedStatus().time === null).toBe(false);
-  });
+        expect(task.getCompletedStatus().time === null).toBe(false);
+    });
 
-  it("Rejects complete() when already completed)", () => {
-    task.setComplete();
+    it("Rejects complete() when already completed)", () => {
+        task.setComplete();
 
-    expect(() => {
-      task.setComplete();
-    }).toThrow();
-  });
+        expect(() => {
+            task.setComplete();
+        }).toThrow();
+    });
 });
 
 describe("Task Incomplete", () => {
-  let task: any;
+    let task: any;
 
-  beforeEach(() => {
-    task = createTask();
-  });
+    beforeEach(() => {
+        task = createTask(VALID_TASK_TITLE);
+    });
 
-  it("Marks a completed task as incomplete - sets date to null", () => {
-    task.setComplete();
-    task.setUncomplete();
+    it("Marks a completed task as incomplete - sets date to null", () => {
+        task.setComplete();
+        task.setUncomplete();
 
-    expect(task.getCompletedStatus().status).toBe(false);
-    expect(task.getCompletedStatus().time).toBe(null);
-  });
+        expect(task.getCompletedStatus().status).toBe(false);
+        expect(task.getCompletedStatus().time).toBe(null);
+    });
 
-  it("Won't allow uncomplete on incomplete task", () => {
-    expect(() => task.setUncomplete()).toThrow();
-  });
+    it("Won't allow uncomplete on incomplete task", () => {
+        expect(() => task.setUncomplete()).toThrow();
+    });
 
-  it("keeps history of complete state change", () => {
-    task.setComplete();
+    it("keeps history of complete state change", () => {
+        task.setComplete();
 
-    expect(task.getHistory().length).toBe(1);
-  });
+        expect(task.getHistory().length).toBe(1);
+    });
 });
