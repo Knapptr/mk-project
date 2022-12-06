@@ -1,3 +1,7 @@
+// Rewrite replies to be comments
+// Add comment field for reply
+// Add id's to objects
+
 interface IReply {
   //! TO ADD: User
   body: string;
@@ -21,11 +25,21 @@ interface IComment {
   _createReply: (body: string) => IReply;
 }
 
-function createComment() {
+function bodyIsValid(text: string): boolean {
+  return text.trim().length !== 0;
+}
+
+function createComment(text: string) {
+  if (!bodyIsValid(text)) {
+    throw new Error(
+      `Comment text invalid: text must not be empty string. Input: "${text}"`
+    );
+  }
+
   const comment: IComment = {
     // DATA
     read: false,
-    body: "",
+    body: text,
     timestamp: new Date(),
     replies: [],
 
@@ -34,6 +48,11 @@ function createComment() {
       this.read = !this.read;
     },
     setBodyText: function (text) {
+      if (!bodyIsValid(text)) {
+        throw new Error(
+          `Comment text invalid: text must not be empty string. Input: "${text}"`
+        );
+      }
       this.body = text;
     },
     addReply: function (text) {
@@ -48,7 +67,7 @@ function createComment() {
 
     // METHODS -- PRIVATE
     _createReply(body: string): IReply {
-      const reply = {
+      const reply: IReply = {
         body,
         timestamp: new Date()
       };

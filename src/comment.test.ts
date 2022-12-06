@@ -4,7 +4,8 @@ describe("Comment read status", () => {
   let comment: any;
 
   beforeEach(() => {
-    comment = createComment();
+    const text = "Testing text to try the trivial tests";
+    comment = createComment(text);
   });
 
   it("Inits as unread", () => {
@@ -28,8 +29,17 @@ describe("Comment read status", () => {
 describe("Comment text", () => {
   let comment: any;
 
+  it("Doesn't allow empty string on creation", () => {
+    const invalidText = "";
+
+    expect(() => {
+      createComment(invalidText);
+    }).toThrow();
+  });
+
   beforeEach(() => {
-    comment = createComment();
+    const text = "Testing text to try the trivial tests";
+    comment = createComment(text);
   });
 
   it("Sets the body text according to input", () => {
@@ -39,13 +49,22 @@ describe("Comment text", () => {
 
     expect(comment.body === test_input).toBe(true);
   });
+
+  it("Doesn't allow empty string on setting text", () => {
+    const invalidText = "";
+
+    expect(() => {
+      comment.setBodyText(invalidText);
+    }).toThrow();
+  });
 });
 
 describe("Comment replies", () => {
   let comment: any;
 
   beforeEach(() => {
-    comment = createComment();
+    const text = "Testing text to try the trivial tests";
+    comment = createComment(text);
   });
 
   it("Adds a reply", () => {
@@ -55,7 +74,7 @@ describe("Comment replies", () => {
     expect(comment.replies.length === 1).toBe(true);
   });
 
-  it("Adds replies in chronological order", async () => {
+  it("Adds replies in chronological order", () => {
     const text1 = "Testing string 1";
     const text2 = "Testing string deux";
 
