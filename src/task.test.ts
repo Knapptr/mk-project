@@ -9,6 +9,11 @@ describe("Task creation", () => {
             createTask(invalidTitle)
         }).toThrow()
     })
+    it("inits with a valid title", () => {
+        let task = createTask(VALID_TASK_TITLE);
+
+        expect(task.title).toBe(VALID_TASK_TITLE);
+    })
 })
 describe("Title", () => {
     it("validates changing the title", () => {

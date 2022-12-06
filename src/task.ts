@@ -13,6 +13,7 @@ interface ICompletedHistory {
 export interface ITask {
     completed: ICompletedState;
     history: ICompletedHistory[];
+    title: string;
     setComplete(): void;
     setUncomplete(): void;
     setTitle(newTitle: string): void
@@ -27,14 +28,13 @@ function createTask(taskTitle: string): ITask {
     //trim whitespace
     taskTitle = taskTitle.trim();
     // validate
-    if (!validate.string.isNotEmpty(taskTitle)) {
-        throw new Error("Task title can not be empty")
-    }
+    validate.string.isNotEmpty(taskTitle, "Task title must not be an empty string.")
     let title = taskTitle;
 
     const task: ITask = {
         completed: { status: false, time: null },
         history: [],
+
 
         // SET METHODS
         setComplete() {
@@ -60,11 +60,12 @@ function createTask(taskTitle: string): ITask {
             //sanitize
             newTitle = newTitle.trim();
             //validate
-            if (!validate.string.isNotEmpty(newTitle)) { throw new Error("Task title can not be empty") };
+            validate.string.isNotEmpty(newTitle, "Task title must not be an empty string.");
             title = newTitle;
         },
 
         // GET METHODS
+        get title() { return title },
         getCompletedStatus() {
             return this.completed;
         },
