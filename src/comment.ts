@@ -1,35 +1,26 @@
-// Rewrite replies to be comments
-// Add comment field for reply
 // Add id's to objects
 
-interface IReply {
-  //! TO ADD: User
-  body: string;
-  timestamp: Date;
-}
-
 interface IComment {
+  isReply: boolean;
   read: boolean;
   body: string;
   //! TO ADD: From User
   //! TO ADD: To User
   timestamp: Date;
-  replies: IReply[];
+  replies: IComment[];
 
   toggleRead: () => void;
   setBodyText: (text: string) => void;
-  addReply: (text: string) => void;
+  addReply: (text: string) => IComment;
 
   getReadStatus: () => boolean;
-
-  _createReply: (body: string) => IReply;
 }
 
 function bodyIsValid(text: string): boolean {
   return text.trim().length !== 0;
 }
 
-function createComment(text: string) {
+function createComment(text: string, isReply: boolean = false) {
   if (!bodyIsValid(text)) {
     throw new Error(
       `Comment text invalid: text must not be empty string. Input: "${text}"`
@@ -38,6 +29,7 @@ function createComment(text: string) {
 
   const comment: IComment = {
     // DATA
+    isReply: isReply,
     read: false,
     body: text,
     timestamp: new Date(),
@@ -56,24 +48,20 @@ function createComment(text: string) {
       this.body = text;
     },
     addReply: function (text) {
-      const reply: IReply = this._createReply(text);
+      if (this.isReply) throw new Error("Replies cannot contain replies");
+
+      const reply: IComment = createComment(text, true);
       this.replies.push(reply);
+
+      return reply;
     },
 
     // METHODS -- GETTERS
     getReadStatus: function () {
       return this.read;
-    },
+    }
 
     // METHODS -- PRIVATE
-    _createReply(body: string): IReply {
-      const reply: IReply = {
-        body,
-        timestamp: new Date()
-      };
-
-      return reply;
-    }
   };
   return comment;
 }

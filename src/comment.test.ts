@@ -74,6 +74,15 @@ describe("Comment replies", () => {
     expect(comment.replies.length === 1).toBe(true);
   });
 
+  it("doesn't allow replies in other replies", () => {
+    const text_a = "testing";
+    const text_b = "testing_b";
+
+    const reply = comment.addReply(text_a);
+
+    expect(() => reply.addReply(text_b)).toThrow();
+  });
+
   it("Adds replies in chronological order", () => {
     const text1 = "Testing string 1";
     const text2 = "Testing string deux";
