@@ -94,17 +94,18 @@ describe("Requirement", () => {
             expect(requirement.status).toEqual(requirementStates.complete);
         })
 
-        // Remove this test, not-started can be set from any state
-        it("cant set to 'not-started'", () => {
-            requirement.setStatus(requirementStates.inProgress)
+    })
 
-            expect(() => { requirement.setStatus(requirementStates.notStarted) }).toThrow();
+    describe("Tasks", () => {
+        let requirement: IRequirement;
+        beforeEach(() => {
+            requirement = createRequirement("valid req name");
+        })
+        it("can create a task", () => {
+            let validTaskTitle = "a valid title"
+            requirement.addTask(validTaskTitle);
 
-            requirement.setStatus(requirementStates.complete);
-
-            expect(() => { requirement.setStatus(requirementStates.notStarted) }).toThrow();
-
-
+            expect(requirement.getTasks().length).toBe(1);
         })
     })
 

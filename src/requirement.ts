@@ -1,5 +1,7 @@
+import createTask, { ITask } from "./task";
+import { validate } from "./utils";
 
-// Use Enum
+// Use Enum?
 // Add Abandoned
 export type RequirementStatus = "not-started" | "in-progress" | "complete";
 
@@ -9,12 +11,18 @@ export interface IRequirement {
     status: RequirementStatus;
     setStatus(newState: RequirementStatus): void;
     setTitle(newTitle: string): void;
+    addTask(title: string): void;
+    getTasks(): ITask[];
 }
 
 function createRequirement(title: string, description: string | null = null): IRequirement {
+    // Title validation/sanitation
     let sanitizedTitle = sanitizeTitleString(title);
-    if (!validateTitleString(sanitizedTitle)) { throw new Error(`Invalid Requirement Title: "${title}"`) };
+    if (!validate.string.isNotEmpty(sanitizedTitle)) { throw new Error(`Invalid Requirement Title: "${title}"`) };
     let _title = sanitizedTitle;
+
+    // tasks
+    const tasks: ITask[] = [];
     // The Requirement object
     return {
         description,
@@ -31,10 +39,15 @@ function createRequirement(title: string, description: string | null = null): IR
         },
 
         setStatus(newState) {
-            if ((this.status === "complete" || this.status === "in-progress") && newState === "not-started") {
-                throw new Error("Cannot mark an already started task as 'not-started'");
-            }
             this.status = newState;
+        },
+
+        addTask(title) {
+            let createdTask = createTask(title);
+            tasks.push(createdTask);
+        },
+        getTasks() {
+            return tasks;
         }
     }
 }

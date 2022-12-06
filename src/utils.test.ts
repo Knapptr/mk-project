@@ -1,10 +1,10 @@
-import utils from "./utils";
+import { validate } from "./utils";
 
 describe("validate strings", () => {
     it("tests for empty string", () => {
         let theEmptyString = "";
 
-        expect(utils.validate.string.isNotEmpty(theEmptyString)).toBe(false)
+        expect(validate.string.isNotEmpty(theEmptyString)).toBe(false)
     })
 
 })
