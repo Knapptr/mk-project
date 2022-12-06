@@ -1,9 +1,7 @@
 import createTask, { ITask } from "./task";
 import { validate } from "./utils";
 
-// Use Enum?
-// Add Abandoned
-export type RequirementStatus = "not-started" | "in-progress" | "complete";
+export type RequirementStatus = "not-started" | "in-progress" | "complete" | "abandoned"
 
 export interface IRequirement {
     title: string;
@@ -17,13 +15,14 @@ export interface IRequirement {
 
 function createRequirement(title: string, description: string | null = null): IRequirement {
     // Title validation/sanitation
-    let sanitizedTitle = sanitizeTitleString(title);
-    if (!validate.string.isNotEmpty(sanitizedTitle)) { throw new Error(`Invalid Requirement Title: "${title}"`) };
-    let _title = sanitizedTitle;
+    title = sanitizeTitleString(title);
+    validate.string.isNotEmpty(title, "Requirement title must not be empty.")
+    let _title = title;
 
     // tasks
     const tasks: ITask[] = [];
-    // The Requirement object
+
+    // The Returned Requirement object
     return {
         description,
         status: "not-started",
@@ -32,9 +31,7 @@ function createRequirement(title: string, description: string | null = null): IR
 
         setTitle(newTitle: string) {
             let sanitizedTitle = sanitizeTitleString(newTitle);
-            if (!validateTitleString(sanitizedTitle)) {
-                throw new Error(`Invalid Requirement Title: "${newTitle}" `);
-            }
+            validate.string.isNotEmpty(sanitizedTitle, "Title string must not be empty")
             _title = sanitizedTitle;
         },
 
@@ -52,12 +49,6 @@ function createRequirement(title: string, description: string | null = null): IR
     }
 }
 
-function validateTitleString(sanitizedTitle: string): boolean {
-    if (sanitizedTitle.length === 0) {
-        return false
-    }
-    return true;
-}
 
 function sanitizeTitleString(title: string): string {
     let trimmedTitle = title.trim();
