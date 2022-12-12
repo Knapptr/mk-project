@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Task-tracking tool for software development",
   "main": "build/index.js",
+  "type": "module",
   "scripts": {
     "dev": "nodemon build/index.js",
     "test": "jest",
