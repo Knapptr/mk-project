@@ -1,51 +1,100 @@
+import { validate } from "./utils";
+
 interface ICompletedState {
-    status: boolean;
-    time: Date | null
+  status: boolean;
+  time: Date | null;
 }
 
 interface ICompletedHistory {
-    markedAs: "complete" | "incomplete";
-    at: Date
+  markedAs: "complete" | "incomplete";
+  at: Date;
 }
 
-function createTask() {
-    let completed: ICompletedState = { status: false, time: null }
-    let history: ICompletedHistory[] = [];
+export interface ITask {
+  completed: ICompletedState;
+  history: ICompletedHistory[];
+  title: string;
+  setComplete(): void;
+  setUncomplete(): void;
+  setTitle(newTitle: string): void;
 
-    return {
-        complete() {
-            if (completed.status) {
-                throw new Error("Task status marked complete. Cannot complete again.")
-            }
-            completed.status = true;
-            completed.time = new Date();
-            this._addToHistory(completed);
-        },
+  getCompletedStatus(): ICompletedState;
+  getHistory(): ICompletedHistory[];
 
-        uncomplete() {
-            if (!completed.status) {
-                throw new Error("Task status marked incomplete. Cannot mark incomplete.");
-            }
-            this._addToHistory(completed);
-            completed.time = null;
-            completed.status = false;
-        },
+  _addToHistory(completedState: ICompletedState): void;
+}
 
-        _addToHistory(completedState: ICompletedState) {
-            const historyObject: ICompletedHistory = {
-                markedAs: completedState.status ? "complete" : "incomplete",
-                at: completedState.time as Date
-            }
-            history.push(historyObject);
-        },
+function createTask(taskTitle: string): ITask {
+  //trim whitespace
+  taskTitle = taskTitle.trim();
+  // validate
+  validate.string.isNotEmpty(
+    taskTitle,
+    "Task title must not be an empty string."
+  );
+  let title = taskTitle;
 
-        getCompletedStatus() {
-            return completed;
-        },
+  const task: ITask = {
+    completed: { status: false, time: null },
+    history: [],
 
-        getHistory() {
-            return history;
-        }
+    // SET METHODS
+    setComplete() {
+      if (this.completed.status) {
+        throw new Error("Task status marked complete. Cannot complete again.");
+      }
+      this.completed.status = true;
+      this.completed.time = new Date();
+      this._addToHistory(this.completed);
+    },
+
+    setUncomplete() {
+      if (!this.completed.status) {
+        throw new Error(
+          "Task status marked incomplete. Cannot mark incomplete."
+        );
+      }
+      this._addToHistory(this.completed);
+      this.completed.time = null;
+      this.completed.status = false;
+    },
+    setTitle(newTitle) {
+      //sanitize
+      newTitle = newTitle.trim();
+      //validate
+      validate.string.isNotEmpty(
+        newTitle,
+        "Task title must not be an empty string."
+      );
+      title = newTitle;
+    },
+
+    // GET METHODS
+    get title() {
+      return title;
+    },
+    set title(_invalid) {
+      throw new Error("Title must be set with setTitle()")
+    },
+    getCompletedStatus() {
+      return this.completed;
+    },
+
+    getHistory() {
+      return this.history;
+    },
+
+    // PRIVATE METHODS
+    _addToHistory(completedState) {
+      const historyObject: ICompletedHistory = {
+        markedAs: completedState.status ? "complete" : "incomplete",
+        at: completedState.time as Date
+      };
+      this.history.push(historyObject);
     }
+  };
+
+  return task;
 }
+
 export default createTask;
