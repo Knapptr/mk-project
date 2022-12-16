@@ -1,3 +1,4 @@
+import { expect } from "chai";
 import createComment from "./comment";
 
 describe("Comment read status", () => {
@@ -9,20 +10,20 @@ describe("Comment read status", () => {
   });
 
   it("Inits as unread", () => {
-    expect(comment.getReadStatus()).toBe(false);
+    expect(comment.getReadStatus()).to.equal(false);
   });
 
   it("Marks unread comment as read", () => {
     comment.toggleRead();
 
-    expect(comment.getReadStatus()).toBe(true);
+    expect(comment.getReadStatus()).to.equal(true);
   });
 
   it("Marks read comment as unread", () => {
     comment.toggleRead();
     comment.toggleRead();
 
-    expect(comment.getReadStatus()).toBe(false);
+    expect(comment.getReadStatus()).to.equal(false);
   });
 });
 
@@ -34,7 +35,7 @@ describe("Comment text", () => {
 
     expect(() => {
       createComment(invalidText);
-    }).toThrow();
+    }).to.throw();
   });
 
   beforeEach(() => {
@@ -47,7 +48,7 @@ describe("Comment text", () => {
 
     comment.setBodyText(test_input);
 
-    expect(comment.body === test_input).toBe(true);
+    expect(comment.body === test_input).to.equal(true);
   });
 
   it("Doesn't allow empty string on setting text", () => {
@@ -55,7 +56,7 @@ describe("Comment text", () => {
 
     expect(() => {
       comment.setBodyText(invalidText);
-    }).toThrow();
+    }).to.throw();
   });
 });
 
@@ -71,7 +72,7 @@ describe("Comment replies", () => {
     const text = "Testing text to try the trivial tests";
     comment.addReply(text);
 
-    expect(comment.replies.length === 1).toBe(true);
+    expect(comment.replies.length === 1).to.equal(true);
   });
 
   it("doesn't allow replies in other replies", () => {
@@ -80,7 +81,7 @@ describe("Comment replies", () => {
 
     const reply = comment.addReply(text_a);
 
-    expect(() => reply.addReply(text_b)).toThrow();
+    expect(() => reply.addReply(text_b)).to.throw();
   });
 
   it("Adds replies in chronological order", () => {
@@ -90,6 +91,6 @@ describe("Comment replies", () => {
     comment.addReply(text1);
     comment.addReply(text2);
 
-    expect(comment.replies[1].body === text2).toBe(true);
+    expect(comment.replies[1].body === text2).to.equal(true);
   });
 });
