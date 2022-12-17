@@ -1,7 +1,9 @@
 # Tasks
 
 - [ ] Tie collaborating objects together where nesc @J
-- [ ] Express boilerplate @T
+- [ ] Basic Views for data types / basic page layout  @J
+- [ ] Factory for instantiating models from DB @T
+- [x] Express boilerplate @T
 - [x] in memory dev db (db.json) @T
 
 ## Standards
