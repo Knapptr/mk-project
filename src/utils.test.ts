@@ -1,3 +1,4 @@
+import { expect } from "chai";
 import { validate } from "./utils";
 
 describe("validate strings", () => {
@@ -7,6 +8,6 @@ describe("validate strings", () => {
 
     expect(() => {
       validate.string.isNotEmpty(theEmptyString, errorMessage);
-    }).toThrow(errorMessage);
+    }).to.throw(errorMessage);
   });
 });

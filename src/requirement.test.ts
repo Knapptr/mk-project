@@ -1,3 +1,4 @@
+import { expect } from "chai";
 import createRequirement, { RequirementStatus, IRequirement } from "./requirement"
 
 // Test 'Globals'
@@ -13,25 +14,25 @@ describe("Factory", () => {
     it("won't allow for an empty string title", () => {
         expect(() => {
             createRequirement("")
-        }).toThrow()
+        }).to.throw()
     })
     it("trims spaces from title", () => {
         expect(() => {
             createRequirement("   ");
-        }).toThrow()
+        }).to.throw()
     })
     it("Creates a valid requirement title", () => {
 
         let requirement = createRequirement(validTitle);
 
-        expect(requirement.title).toEqual(validTitle);
+        expect(requirement.title).to.equal(validTitle);
     })
 
     it("Defaults a requirement status to 'not-started'", () => {
 
         let requirement = createRequirement(validTitle);
 
-        expect(requirement.status).toEqual("not-started")
+        expect(requirement.status).to.equal("not-started")
     })
 
     it("handles optional description", () => {
@@ -41,8 +42,8 @@ describe("Factory", () => {
         let validDescription = "a valid description."
         let descriptRequirement = createRequirement(validTitle, validDescription);
 
-        expect(nonDescriptRequirement.description).toBe(null);
-        expect(descriptRequirement.description).toEqual(validDescription);
+        expect(nonDescriptRequirement.description).to.equal(null);
+        expect(descriptRequirement.description).to.equal(validDescription);
 
     })
 
@@ -59,14 +60,14 @@ describe("Requirement", () => {
 
     describe("title", () => {
         it("setTitle throws on empty string", () => {
-            expect(() => { requirement.setTitle("") }).toThrow();
+            expect(() => { requirement.setTitle("") }).to.throw();
         })
         it("Changes name of title with setTitle", () => {
             let newValidTitle = "A new valid Title."
 
             requirement.setTitle(newValidTitle);
 
-            expect(requirement.title).toEqual(newValidTitle);
+            expect(requirement.title).to.equal(newValidTitle);
         })
     })
 
@@ -79,19 +80,19 @@ describe("Requirement", () => {
 
             requirement.setStatus(requirementStates.inProgress);
 
-            expect(requirement.status).toEqual(requirementStates.inProgress);
+            expect(requirement.status).to.equal(requirementStates.inProgress);
         })
         it("can set to 'complete' from 'not-started'", () => {
             requirement.setStatus(requirementStates.complete);
 
-            expect(requirement.status).toEqual(requirementStates.complete);
+            expect(requirement.status).to.equal(requirementStates.complete);
         })
 
         it("can set to 'complete' from 'in-progress", () => {
             requirement.setStatus(requirementStates.inProgress);
             requirement.setStatus(requirementStates.complete);
 
-            expect(requirement.status).toEqual(requirementStates.complete);
+            expect(requirement.status).to.equal(requirementStates.complete);
         })
 
     })
@@ -105,7 +106,7 @@ describe("Requirement", () => {
             let validTaskTitle = "a valid title"
             requirement.addTask(validTaskTitle);
 
-            expect(requirement.getTasks().length).toBe(1);
+            expect(requirement.getTasks().length).to.equal(1);
         })
     })
 

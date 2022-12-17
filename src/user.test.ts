@@ -1,3 +1,4 @@
+import { expect } from "chai";
 import createUser from "./user";
 
 describe("Creation", () => {
@@ -6,7 +7,7 @@ describe("Creation", () => {
         const validpassword = "aValidPassword"
         let user = createUser(username, validpassword);
 
-        expect(user.username).toBe("aValidUserNameButWithWhitespace");
+        expect(user.username).to.equal("aValidUserNameButWithWhitespace");
 
     })
 
@@ -16,7 +17,7 @@ describe("Creation", () => {
 
         let user = createUser(validUsername, validpassword);
 
-        expect(user.username).toBe("aValidUsernameWithMiddleWhitespace");
+        expect(user.username).to.equal("aValidUsernameWithMiddleWhitespace");
 
     })
 
@@ -26,7 +27,7 @@ describe("Creation", () => {
 
         let user = createUser(username, validpassword)
 
-        expect(user.validate(validpassword)).toBe(true);
+        expect(user.validate(validpassword)).to.equal(true);
     })
 
     it("checks password: incorrect", () => {
@@ -36,7 +37,7 @@ describe("Creation", () => {
 
         let user = createUser(username, validpassword)
 
-        expect(user.validate(wrongPassword)).toBe(false);
+        expect(user.validate(wrongPassword)).to.equal(false);
     })
 
 })

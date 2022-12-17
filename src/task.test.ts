@@ -1,3 +1,4 @@
+import { expect } from "chai";
 import createTask, { ITask } from "./task";
 
 const VALID_TASK_TITLE = "valid task title"
@@ -7,14 +8,12 @@ describe("Task creation", () => {
         const invalidTitle = "   "
         expect(() => {
             createTask(invalidTitle)
-        }).toThrow()
+        }).to.throw()
     })
     it("inits with a valid title", () => {
         let task = createTask(VALID_TASK_TITLE);
 
-        expect(task.title).toBe(VALID_TASK_TITLE);
-        task.title = "        ";
-        // task.setTitle("new title");
+        expect(task.title).to.equal(VALID_TASK_TITLE);
     })
 })
 describe("Title", () => {
@@ -23,7 +22,7 @@ describe("Title", () => {
         const invalidTitle = "  ";
         expect(() => {
             task.setTitle(invalidTitle)
-        }).toThrow()
+        }).to.throw()
     })
 })
 describe("Task Completion", () => {
@@ -34,19 +33,19 @@ describe("Task Completion", () => {
     });
 
     it("Init complete state to false", () => {
-        expect(task.getCompletedStatus().status).toBe(false);
+        expect(task.getCompletedStatus().status).to.equal(false);
     });
 
     it("Marks task as finished", () => {
         task.setComplete();
 
-        expect(task.getCompletedStatus().status).toBe(true);
+        expect(task.getCompletedStatus().status).to.equal(true);
     });
 
     it("Timestamps on completion", () => {
         task.setComplete();
 
-        expect(task.getCompletedStatus().time === null).toBe(false);
+        expect(task.getCompletedStatus().time === null).to.equal(false);
     });
 
     it("Rejects complete() when already completed)", () => {
@@ -54,7 +53,7 @@ describe("Task Completion", () => {
 
         expect(() => {
             task.setComplete();
-        }).toThrow();
+        }).to.throw();
     });
 });
 
@@ -69,17 +68,17 @@ describe("Task Incomplete", () => {
         task.setComplete();
         task.setUncomplete();
 
-        expect(task.getCompletedStatus().status).toBe(false);
-        expect(task.getCompletedStatus().time).toBe(null);
+        expect(task.getCompletedStatus().status).to.equal(false);
+        expect(task.getCompletedStatus().time).to.equal(null);
     });
 
     it("Won't allow uncomplete on incomplete task", () => {
-        expect(() => task.setUncomplete()).toThrow();
+        expect(() => task.setUncomplete()).to.throw();
     });
 
     it("keeps history of complete state change", () => {
         task.setComplete();
 
-        expect(task.getHistory().length).toBe(1);
+        expect(task.getHistory().length).to.equal(1);
     });
 });
