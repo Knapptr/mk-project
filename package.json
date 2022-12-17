@@ -3,9 +3,8 @@
   "version": "1.0.0",
   "description": "Task-tracking tool for software development",
   "main": "build/index.js",
-  "type": "module",
   "scripts": {
-    "dev": "nodemon build/index.js",
+    "dev": "nodemon src/index.ts",
     "test": "jest",
     "test-w": "jest --watch",
     "build": "tsc"
