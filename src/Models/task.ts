@@ -1,4 +1,4 @@
-import { validate } from "./utils";
+import { validate } from "../utils/utils";
 
 interface ICompletedState {
   status: boolean;
@@ -74,7 +74,7 @@ function createTask(taskTitle: string): ITask {
       return title;
     },
     set title(_invalid) {
-      throw new Error("Title must be set with setTitle()")
+      throw new Error("Title must be set with setTitle()");
     },
     getCompletedStatus() {
       return this.completed;

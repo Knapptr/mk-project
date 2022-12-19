@@ -1,5 +1,5 @@
 import { expect } from "chai";
-import { validate } from "./utils";
+import { validate } from "../utils/utils";
 
 describe("validate strings", () => {
   it("throws on empty string", () => {
