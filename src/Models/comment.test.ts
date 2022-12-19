@@ -1,12 +1,23 @@
 import { expect } from "chai";
 import createComment from "./comment";
 
+describe("Comments tied to users", () => {
+  let comment: any;
+
+  beforeEach(() => {
+    const text = "Test text.";
+    const fromUser_id = "01";
+    comment = createComment(text, fromUser_id);
+  });
+});
+
 describe("Comment read status", () => {
   let comment: any;
 
   beforeEach(() => {
     const text = "Testing text to try the trivial tests";
-    comment = createComment(text);
+    const fromUser_id = "01";
+    comment = createComment(text, fromUser_id);
   });
 
   it("Inits as unread", () => {
@@ -32,15 +43,17 @@ describe("Comment text", () => {
 
   it("Doesn't allow empty string on creation", () => {
     const invalidText = "";
+    const fromUser_id = "01";
 
     expect(() => {
-      createComment(invalidText);
+      createComment(invalidText, fromUser_id);
     }).to.throw();
   });
 
   beforeEach(() => {
     const text = "Testing text to try the trivial tests";
-    comment = createComment(text);
+    const fromUser_id = "01";
+    comment = createComment(text, fromUser_id);
   });
 
   it("Sets the body text according to input", () => {
@@ -65,7 +78,8 @@ describe("Comment replies", () => {
 
   beforeEach(() => {
     const text = "Testing text to try the trivial tests";
-    comment = createComment(text);
+    const fromUser_id = "01";
+    comment = createComment(text, fromUser_id);
   });
 
   it("Adds a reply", () => {

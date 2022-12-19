@@ -4,14 +4,14 @@ interface IComment {
   isReply: boolean;
   read: boolean;
   body: string;
-  //! TO ADD: From User
-  //! TO ADD: To User
+  user_from: string;
+  user_to: string | null;
   timestamp: Date;
   replies: IComment[];
 
   toggleRead: () => void;
   setBodyText: (text: string) => void;
-  addReply: (text: string) => IComment;
+  addReply: (text: string, fromUser: string, toUser: string | null) => IComment;
 
   getReadStatus: () => boolean;
 }
@@ -20,7 +20,12 @@ function bodyIsValid(text: string): boolean {
   return text.trim().length !== 0;
 }
 
-function createComment(text: string, isReply: boolean = false) {
+function createComment(
+  text: string,
+  fromUser: string,
+  toUser: string | null = null,
+  isReply: boolean = false
+) {
   if (!bodyIsValid(text)) {
     throw new Error(
       `Comment text invalid: text must not be empty string. Input: "${text}"`
@@ -29,6 +34,8 @@ function createComment(text: string, isReply: boolean = false) {
 
   const comment: IComment = {
     // DATA
+    user_from: fromUser,
+    user_to: toUser,
     isReply: isReply,
     read: false,
     body: text,
@@ -47,10 +54,10 @@ function createComment(text: string, isReply: boolean = false) {
       }
       this.body = text;
     },
-    addReply: function (text) {
+    addReply: function (text, fromUser, toUser = null) {
       if (this.isReply) throw new Error("Replies cannot contain replies");
 
-      const reply: IComment = createComment(text, true);
+      const reply: IComment = createComment(text, fromUser, toUser, true);
       this.replies.push(reply);
 
       return reply;

@@ -25,7 +25,7 @@
     ],
     "require": "ts-node/register",
     "reporter": "min",
-    "spec": "src/**.test.ts"
+    "spec": "src/Models/**.test.ts"
   },
   "homepage": "https://github.com/Knapptr/mk-project#readme",
   "devDependencies": {
