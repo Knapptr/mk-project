@@ -14,12 +14,15 @@ export interface ITask {
   completed: ICompletedState;
   history: ICompletedHistory[];
   title: string;
+  users: string[];
   setComplete(): void;
   setUncomplete(): void;
   setTitle(newTitle: string): void;
+  assignUser(user_id: string): void;
 
   getCompletedStatus(): ICompletedState;
   getHistory(): ICompletedHistory[];
+  getAssignedUsers(): string[];
 
   _addToHistory(completedState: ICompletedState): void;
 }
@@ -37,6 +40,7 @@ function createTask(taskTitle: string): ITask {
   const task: ITask = {
     completed: { status: false, time: null },
     history: [],
+    users: [],
 
     // SET METHODS
     setComplete() {
@@ -58,6 +62,7 @@ function createTask(taskTitle: string): ITask {
       this.completed.time = null;
       this.completed.status = false;
     },
+
     setTitle(newTitle) {
       //sanitize
       newTitle = newTitle.trim();
@@ -67,6 +72,10 @@ function createTask(taskTitle: string): ITask {
         "Task title must not be an empty string."
       );
       title = newTitle;
+    },
+
+    assignUser(user_id) {
+      this.users.push(user_id);
     },
 
     // GET METHODS
@@ -82,6 +91,10 @@ function createTask(taskTitle: string): ITask {
 
     getHistory() {
       return this.history;
+    },
+
+    getAssignedUsers() {
+      return this.users;
     },
 
     // PRIVATE METHODS
