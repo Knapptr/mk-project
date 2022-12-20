@@ -14,6 +14,7 @@ app.set("view engine", "pug");
 // Routers
 app.use("/users", router.userRouter);
 app.use("/tasks", router.taskRouter);
+app.use("/requirements", router.requirementRouter);
 
 // Run Server
 app.listen(PORT, () => {
