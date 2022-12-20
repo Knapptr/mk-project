@@ -14,6 +14,7 @@ const controller: IControllerComments = {
   viewOne: (req, res) => {
     const id = req.params.id;
     const task = db.tasks.find((task) => task.id == id);
+    console.log(task);
     res.render("task", { task: task });
   },
   addComment: notImplemented,
