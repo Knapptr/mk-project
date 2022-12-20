@@ -5,7 +5,7 @@ block content
   ul
     each task in tasks
       li 
-        a(href= "./" + task.id)
+        a(href= "/tasks/" + task.id)
           h3 #{task.title} 
             span 
               em #{task.status}
