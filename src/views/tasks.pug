@@ -7,6 +7,8 @@ block content
       li 
         a(href= "/tasks/" + task.id)
           h3 #{task.title} 
-            span 
-              em #{task.status}
+        p Completed: #{task.completed.status}
+          if task.completed.status
+            - console.log(task.completed.time) 
+            span= ` || ${new Date(task.completed.time).toLocaleString("en-US", {dateStyle: "medium", timeStyle: "medium"})}`
         p #{task.description}
