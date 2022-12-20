@@ -2,13 +2,9 @@
 import db from "../utils/dev.json";
 
 //////////////
-import { RequestHandler } from "express";
+import { IControllerComments, notImplemented } from "./utils";
 
-type Controller = { [method: string]: RequestHandler };
-
-const notImplemented: RequestHandler = (req, res) => res.send("not yet implemented")
-
-const controller: Controller = {
+const controller: IControllerComments = {
   viewAll: (req, res) => {
     res.render("requirements", { requirements: db.requirements })
   },
@@ -16,7 +12,7 @@ const controller: Controller = {
   delete: notImplemented,
   update: notImplemented,
   viewOne: (req, res) => {
-    const id = req.params.reqId;
+    const id = req.params.id;
     const requirement = db.requirements.find((requirement) => requirement.id == id)
     res.render("requirement", { req: requirement })
   },

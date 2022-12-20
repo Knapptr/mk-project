@@ -9,15 +9,15 @@ router.get("/", reqController.viewAll);
 // Add a requirement
 router.post("/", reqController.create);
 // Delete a requirement
-router.delete("/:reqId", reqController.delete);
+router.delete("/:id", reqController.delete);
 // Update a requirement
-router.put("/:reqId", reqController.update);
+router.put("/:id", reqController.update);
 // View one requirement
-router.get("/:reqId", reqController.viewOne);
+router.get("/:id", reqController.viewOne);
 // Comment on requirement
-router.post("/:reqId/comments", reqController.addComment);
+router.post("/:id/comments", reqController.addComment);
 // Reply to comment on requirement
-router.get("/:reqId/comments/:commentId", reqController.addReply);
+router.get("/:id/comments/:commentId", reqController.addReply);
 // Delete comment on requirement
-router.delete("/:reqId/comments/:commentId", reqController.deleteComment);
+router.delete("/:id/comments/:commentId", reqController.deleteComment);
 export default router;
