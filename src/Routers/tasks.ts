@@ -1,11 +1,10 @@
 import express from "express";
+import tasks_controller from "../Controllers/tasks";
 
 const router = express.Router();
 
-router.get("/", (req,res,next)=>{
- res.send("Not yet implemented") 
-})
+router.get("/", tasks_controller.viewAll);
+
+router.get("/:id", tasks_controller.viewOne);
 
 export default router;
-
-

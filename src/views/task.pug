@@ -1,4 +1,11 @@
-extends layout 
+extends layout
 
-block content 
-  h1 Tasks set up
+block content
+    h1 One Task
+
+    h2 #{task.title}
+    p #{task.status}
+    p #{task.description}
+
+    a(href="./") View All
+    
