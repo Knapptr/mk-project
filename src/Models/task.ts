@@ -11,6 +11,7 @@ interface ICompletedHistory {
 }
 
 export interface ITask {
+  // requirement: string;
   completed: ICompletedState;
   history: ICompletedHistory[];
   title: string;

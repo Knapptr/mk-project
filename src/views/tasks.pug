@@ -1,4 +1,14 @@
-extends layout 
+extends layout
 
-block content 
-  h1 Tasks set up
+block content
+  h1 All Tasks
+  ul
+    each task in tasks
+      li 
+        a(href= "/tasks/" + task.id)
+          h3 #{task.title} 
+        p Completed: #{task.completed.status}
+          if task.completed.status
+            - console.log(task.completed.time) 
+            span= ` || ${new Date(task.completed.time).toLocaleString("en-US", {dateStyle: "medium", timeStyle: "medium"})}`
+        p #{task.description}
